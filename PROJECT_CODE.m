@@ -1,4 +1,3 @@
-% Prasoon_Mehta
 % HDR to AUDIO Signals RESCALING AND RANGE DENSITY FUNCTION CODE
 
 
