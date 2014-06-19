@@ -33,7 +33,7 @@ Y2 = filtfilt(b2,a2,ch1);      %filter2 implementation
 %----------------- Rescaling the quantised signal -------------------------
 
 g1 = 2; % the signal is a sine wave with an amptide of 0.25 V with an offset of 0.5V
-% g_delta to be found out 
+g_delta = 18140; 
 Y2 = Y2./(g_delta*g1);
 Y1 = Y1./g1;
 
