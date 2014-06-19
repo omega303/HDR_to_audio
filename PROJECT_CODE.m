@@ -26,5 +26,17 @@ Y2 = filtfilt(b2,a2,ch1);      %filter2 implementation
 
 % SETTING DEVICE AND CHANNEL PROPERTIES
  s.Rate = 20e3; 
- s.Channels.Range = [0 2];
+ s.Channels.Range = [-2 2];
  s.DurationInSeconds = 0.5;
+
+ 
+%----------------- Rescaling the quantised signal -------------------------
+
+g1 = 2; % the signal is a sine wave with an amptide of 0.25 V with an offset of 0.5V
+% g_delta to be found out 
+Y2 = Y2./(g_delta*g1);
+Y1 = Y1./g1;
+
+%----------------Certainity function multiplication------------------------
+
+
