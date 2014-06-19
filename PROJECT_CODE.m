@@ -26,5 +26,5 @@ Y2 = filtfilt(b2,a2,ch1);      %filter2 implementation
 
 % SETTING DEVICE AND CHANNEL PROPERTIES
  s.Rate = 20e3; 
- s.Channels.Range = [-2 2];
+ s.Channels.Range = [0 2];
  s.DurationInSeconds = 0.5;
