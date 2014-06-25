@@ -18,7 +18,7 @@ f = 500;
 fs = 20e3;
 t = 0:1/fs:1;
 ch0  = (2*0.125).*sin(2*pi*f.*t);
-ch1  = (18420*2*0.125).*sin(2*pi*f.*t);
+ch1  = (18*2*0.125).*sin(2*pi*f.*t);
 
 for R = 1:fs+1
         if (ch1(R)> 2)
@@ -33,6 +33,12 @@ partition = [-2:.0000610 :1.999939]; % Length 65535, to represent 2^16=65536 int
 codebook = [-1.9999695:0.0000610:2.0000305]; % Length 65536, one entry for each interval
 [index1,quants1] = quantiz(ch0,partition,codebook); % Quantize.
 [index2,quants2] = quantiz(ch1,partition,codebook); % Quantize 
+
+% partition = [-2:.25 :1.75]; % Length 65535, to represent 2^16=65536 intervals
+% codebook = [-1.75:.25:2.25]; % Length 65536, one entry for each interval
+% [index1,quants1] = quantiz(ch0,partition,codebook); % Quantize.
+% [index2,quants2] = quantiz(ch1,partition,codebook); % Quantiz
+
 % ------------------------------------------------------------------------
 % fnorm = [0 fs/2]/(2*fs);  
 [b1,a1] = butter(10,0.5,'low');  %Butterworth filter order 10
@@ -55,7 +61,7 @@ Y2 = filtfilt(b2,a2,quants2);      %filter2 implementation
 %----------------- Rescaling the quantised signal -------------------------
 
 g1 = 2; % the signal is a sine wave with an amptide of 0.25 V with an offset of 0.5V
-g_delta = 18420; 
+g_delta = 18; 
 Y2_new = Y2./(g_delta.*g1);
 Y1_new = Y1./g1;
 
@@ -132,7 +138,7 @@ title ('Range Density Function 1');
 
 subplot (4,1,2);
 plot ( Range_density2, Y2);
-axis ([0.999995 1.000100 -2 2]);
+axis ([0.999995 1.000100 -3.85 3.85]);
 grid on;
 xlabel('Range Density Function--->');
 ylabel ('Sample Values--->');
@@ -148,7 +154,7 @@ title ('Certainity function 1');
 
 subplot (4,1,4);
 plot (t,Range_density2);
-axis ([0 0.025 0.999995 1.000100]);
+axis ([0 0.025 0.9995 1.0100]);
 grid on;
 xlabel('Time(s)--->');
 ylabel ('Amplitude--->');
