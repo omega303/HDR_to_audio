@@ -1,0 +1,14 @@
+PROJECT DESCRIPTION :
+
+?	The project plans on producing a low frequency and low amplitude sinusoidal voltage signal (in the range of [0,2] Volt) through an NI MyDAQ unit’s analog output channel.
+
+?	The sinusoidal signal obtained then, as mentioned in [1], is fed to TI084 giving two output signals with different gains that are then again fed to MYDAQ (at A1 0+ and A1 1+ of the screw terminal).
+
+?	In the MATLAB code, the anti-aliasing filter ( a low pass Butterworth filter ) is used to remove high-frequency noise aliasing the cutoff frequency of the filter being half the set sampling frequency. The signal is then sampled at  Nyquist frequency.     
+
+?	The 16-bit (default) quantized signal is then rescaled  as given in [1].
+          and multiplied with the certainty function (dictated by the Range  
+          density function as given in [1]).
+
+?	Each sample value is then averaged to get the quantized samples ready to be sent through a communication link.
+?	The quantized signal is reconstructed to compare the SNR with that of a Low density range signal and show the improvement
